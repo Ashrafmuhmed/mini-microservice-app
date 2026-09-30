@@ -26,6 +26,11 @@ app.post( '/posts' , async (req , res) => {
 
 });
 
+app.post( '/events' , ( req , res ) => {
+    console.log('Received Event',req.body);
+    res.send({ message: 'received' });
+});
+
 app.listen( 4000 , () => {
     console.log('Listening on 4000');
 })

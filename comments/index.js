@@ -31,6 +31,11 @@ app.get('/posts/:id/comments', (req, res) => {
   res.status(200).send(commentsByPostId[postId] || []);
 });
 
+app.post('/events' , ( req , res ) => {
+  console.log('Event received', req.body);
+  res.send({message:'event received'});
+});
+
 app.listen(4001, () => {
   console.log('comments service is listening at 4001');
 });
