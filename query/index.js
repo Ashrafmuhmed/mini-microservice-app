@@ -5,11 +5,43 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get('/posts', ( req , res ) => {
 
+const posts = {};
+
+/**
+ * 
+ * @example
+ * posts = {
+ *  postId : {
+ *      id : postId,
+ *      title : title,
+ *      comments : [
+ *          { id : commentId , content : 'comment'! }    
+ *      ]
+ *  }
+ * }
+ */
+
+app.get('/posts', ( req , res ) => {
+    res.send(posts);
 });
 
 app.post('/events', ( req , res ) => {
+    const { type , data } = req.body;
+    console.log( type , data );
+
+    if( type === 'PostCreated' ){
+        const { id , title } = data;
+        posts[id] = { id , title , comments : [] };
+    }
+
+    if( type === 'CommentCreated' ){
+        const { postId , id , title } = data;
+        posts[postId].comments.push({ id , title });
+    } 
+    
+    console.log(posts);
+    
 
 });
 
