@@ -17,7 +17,7 @@ app.post('/events' , async ( req , res ) => {
         };
         await axios.post('http://localhost:4005/events',event);
     }
-
+    res.status(200).send('good');
 });
 
 app.listen(4003, ( err ) => {

@@ -33,7 +33,6 @@ app.get('/posts/:id/comments', (req, res) => {
 
 app.post('/events',async (req, res) => {
   console.log('Event received', req.body);
-  // res.send({ message: 'event received' });
   const { type, data } = req.body;
 
   if (type === 'CommentModerated') {
@@ -46,7 +45,7 @@ app.post('/events',async (req, res) => {
     };
     await axios.post('http://localhost:4005/events', event);
   }
-
+  res.status(201).send('good');
 });
 
 app.listen(4001, () => {
