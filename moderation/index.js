@@ -10,7 +10,7 @@ app.post('/events' , async ( req , res ) => {
     console.log(type);
     if(type === 'CommentCreated'){
         const { title } = data;
-        const status = title.toLowerCase().includes('orange') ? 'rejected' : 'approve';
+        const status = title.toLowerCase().includes('orange') ? 'rejected' : 'approved';
         const event = {
             type : 'CommentModerated',
             data : { ...data , status }

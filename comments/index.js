@@ -33,12 +33,13 @@ app.get('/posts/:id/comments', (req, res) => {
 
 app.post('/events',async (req, res) => {
   console.log('Event received', req.body);
-  res.send({ message: 'event received' });
+  // res.send({ message: 'event received' });
   const { type, data } = req.body;
 
   if (type === 'CommentModerated') {
     const { postId, id, title, status } = data;
-    commentsByPostId[postId] = { id,title,status };
+    let comment = commentsByPostId[postId].find( comment => comment.id == id);
+    comment = { id , title , status };
     const event = { 
       type : "CommentUpdated",
       data : { postId , id , title , status }
