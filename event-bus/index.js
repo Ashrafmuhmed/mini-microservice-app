@@ -14,10 +14,10 @@ app.post('/events', async (req, res) => {
 
   try {
     await Promise.all([
-      axios.post('http://localhost:4000/events', event), // posts microservice
-      axios.post('http://localhost:4001/events', event), // comments microservice
-      axios.post('http://localhost:4002/events', event), // query microservice
-      axios.post('http://localhost:4003/events', event)  // moderation microservice
+      axios.post('http://posts-clusterip-srv:4000/events', event), // posts microservice
+      axios.post('http://comments-clusterip-srv:4001/events', event), // comments microservice
+      axios.post('http://query-clusterip-srv:4002/events', event), // query microservice
+      axios.post('http://moderation-clusterip-srv:4003/events', event)  // moderation microservice
     ])
   } catch(err) {
     console.log(err.message);
@@ -31,5 +31,6 @@ app.get('/events' , ( req , res ) => {
 }); 
 
 app.listen(4005, () => {
-    console.log('Event bus on 4005')
-})
+    console.log('cluster ip');
+    console.log('Event bus on 4005');
+});

@@ -22,7 +22,7 @@ app.post('/posts/:id/comments', async (req, res) => {
     data: { id, title, postId, status: 'pending' },
   };
   console.log(event);
-  await axios.post('http://localhost:4005/events', event);
+  await axios.post('http://event-bus-srv:4005/events', event);
   res.status(201).send({ id, title });
 });
 
@@ -43,7 +43,7 @@ app.post('/events',async (req, res) => {
       type : "CommentUpdated",
       data : { postId , id , title , status }
     };
-    await axios.post('http://localhost:4005/events', event);
+    await axios.post('http://event-bus-srv:4005/events', event);
   }
   res.status(201).send('good');
 });
