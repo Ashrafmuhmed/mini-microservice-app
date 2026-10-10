@@ -11,7 +11,7 @@ app.get( '/posts' , (req , res) => {
     res.send(posts);
 });
 
-app.post( '/posts' , async (req , res) => {
+app.post( '/posts/create' , async (req , res) => {
     const { title } = req.body;
     const id = cr.randomBytes(4).toString('hex');
     if(title.trim()==="") return res.status(404).send("stop messing");
@@ -32,6 +32,6 @@ app.post( '/events' , ( req , res ) => {
 });
 
 app.listen( 4000 , () => {
-    console.log('cluster ip');
+    console.log('cluster ip posts/create');
     console.log('Listening on 4000');
 })
